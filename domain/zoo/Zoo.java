@@ -25,6 +25,10 @@ public class Zoo {
         }
     }
 
+    public boolean isEmpty() {
+        return animals.isEmpty();
+    }
+
     // 동물 보여주기
     public void showAnimals() {
         if (animals.isEmpty()) {
@@ -39,6 +43,4 @@ public class Zoo {
                               );
         }
     }
-
-
 }

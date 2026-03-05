@@ -35,6 +35,7 @@ public abstract class Animal {
         return age;
     }
 
-
     public abstract String getType();
+
+
 }
