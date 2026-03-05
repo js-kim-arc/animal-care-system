@@ -30,6 +30,7 @@ public class Zoo {
     }
 
     // 동물 보여주기
+    // 코드 리팩토링 - Animal 이름 말하기 자동화,
     public void showAnimals() {
         if (animals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다.");
@@ -38,9 +39,7 @@ public class Zoo {
 
         for (int i = 0; i < animals.size(); i++) {
             Animal animal = animals.get(i);
-            System.out.println(
-                    (i + 1) + ". " + animal.getName() + " (" + animal.getType() + ", " + animal.getAge() + "살)"
-                              );
+            System.out.println((i + 1) + ". " + animal.summary());
         }
     }
 }

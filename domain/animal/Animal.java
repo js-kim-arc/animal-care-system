@@ -37,5 +37,9 @@ public abstract class Animal {
 
     public abstract String getType();
 
+    public String summary() {
+        return name + " (" + getType() + ", " + age + "살)";
+    }
+
 
 }
