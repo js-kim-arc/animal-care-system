@@ -7,6 +7,7 @@ public abstract class Animal {
     // 디폴트 먹이값: 50으로 산정
     // 추가 규칙에 대해서 생각 필요
     private int hunger;
+    private int happiness;
 
     // 생성 시에 바로 검증
 
@@ -17,6 +18,7 @@ public abstract class Animal {
         this.name = name;
         this.age = age;
         this.hunger = 50;
+        this.happiness = 50;
     }
 
     //기본 검증 로직 - 이름
@@ -42,6 +44,10 @@ public abstract class Animal {
 
     public abstract String getType();
 
+    public int getHappiness() {
+        return happiness;
+    }
+
     public String summary() {
         return name + " (" + getType() + ", " + age + "살)";
     }
@@ -53,6 +59,16 @@ public abstract class Animal {
         }
 
         System.out.println(name + "에게 먹이를 주었습니다. 현재 배고픔 수치: " + hunger);
+    }
+
+    // 놀아주면 +10 규칙 - max 100
+    public void play() {
+        happiness += 10;
+        if (happiness > 100) {
+            happiness = 100;
+        }
+
+        System.out.println(name + "와(과) 놀아주었습니다. 현재 행복도: " + happiness);
     }
 
 }

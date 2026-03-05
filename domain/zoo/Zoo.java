@@ -43,7 +43,7 @@ public class Zoo {
         }
     }
 
-    //
+    // 코드 리팩토링 - (이유) 반복 행동
     public Animal findAnimalByIndex(int index) {
         if (index < 0 || index >= animals.size()) {
             throw new IllegalArgumentException("잘못된 동물 번호입니다.");
@@ -57,4 +57,11 @@ public class Zoo {
         Animal animal = findAnimalByIndex(index);
         animal.feed();
     }
+
+    public void playWithAnimal(int index) {
+        Animal animal = findAnimalByIndex(index);
+        animal.play();
+    }
+
+
 }

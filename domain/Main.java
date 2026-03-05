@@ -27,6 +27,9 @@ public class Main {
                 feedAnimal();
                 break;
             case 4:
+                playWithAnimal();
+                break;
+            case 5:
                 System.out.println("프로그램을 종료합니다.");
                 scanner.close();
                 return;
@@ -88,6 +91,24 @@ public class Main {
 
             int choice = readInt("선택: ");
             zoo.feedAnimal(choice - 1);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
+    }
+
+    private static void playWithAnimal() {
+        try {
+            if (zoo.isEmpty()) {
+                System.out.println("등록된 동물이 없습니다.");
+                return;
+            }
+
+            System.out.println("놀아줄 동물을 선택하세요:");
+            zoo.showAnimals();
+
+            int choice = readInt("선택: ");
+            zoo.playWithAnimal(choice - 1);
 
         } catch (IllegalArgumentException e) {
             System.out.println("입력 오류: " + e.getMessage());
