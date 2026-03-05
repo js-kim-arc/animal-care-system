@@ -46,7 +46,9 @@ public class Main {
         System.out.println("=== 동물원 관리 시스템 ===");
         System.out.println("1. 동물 등록");
         System.out.println("2. 동물 목록 보기");
-        System.out.println("3. 종료");
+        System.out.println("3. 먹이주기");
+        System.out.println("4. 동물과 놀기");
+        System.out.println("5. 종료");
     }
 
     // Animal 생성 - Ocp
