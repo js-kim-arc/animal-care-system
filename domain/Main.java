@@ -24,6 +24,9 @@ public class Main {
                 zoo.showAnimals();
                 break;
             case 3:
+                feedAnimal();
+                break;
+            case 4:
                 System.out.println("프로그램을 종료합니다.");
                 scanner.close();
                 return;
@@ -66,6 +69,25 @@ public class Main {
 
             Animal animal = createAnimal(type, name, age);
             zoo.addAnimal(animal);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
+    }
+
+    private static void feedAnimal() {
+        try {
+            if (zoo.isEmpty()) {
+                System.out.println("등록된 동물이 없습니다.");
+                return;
+            }
+
+            // 코드 리팩토링 고민
+            System.out.println("먹이를 줄 동물을 선택하세요:");
+            zoo.showAnimals();
+
+            int choice = readInt("선택: ");
+            zoo.feedAnimal(choice - 1);
 
         } catch (IllegalArgumentException e) {
             System.out.println("입력 오류: " + e.getMessage());

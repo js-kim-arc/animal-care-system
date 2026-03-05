@@ -42,4 +42,19 @@ public class Zoo {
             System.out.println((i + 1) + ". " + animal.summary());
         }
     }
+
+    //
+    public Animal findAnimalByIndex(int index) {
+        if (index < 0 || index >= animals.size()) {
+            throw new IllegalArgumentException("잘못된 동물 번호입니다.");
+        }
+
+        return animals.get(index);
+    }
+
+    // 동물 찾아서 밥주기
+    public void feedAnimal(int index) {
+        Animal animal = findAnimalByIndex(index);
+        animal.feed();
+    }
 }

@@ -4,14 +4,19 @@ public abstract class Animal {
 
     private final String name;
     private final int age;
+    // 디폴트 먹이값: 50으로 산정
+    // 추가 규칙에 대해서 생각 필요
+    private int hunger;
 
     // 생성 시에 바로 검증
+
     public Animal(String name, int age) {
         validateName(name);
         validateAge(age);
 
         this.name = name;
         this.age = age;
+        this.hunger = 50;
     }
 
     //기본 검증 로직 - 이름
@@ -41,5 +46,13 @@ public abstract class Animal {
         return name + " (" + getType() + ", " + age + "살)";
     }
 
+    public void feed() {
+        hunger -= 10;
+        if (hunger < 0) {
+            hunger = 0;
+        }
+
+        System.out.println(name + "에게 먹이를 주었습니다. 현재 배고픔 수치: " + hunger);
+    }
 
 }
