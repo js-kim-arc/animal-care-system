@@ -1,6 +1,9 @@
-package domain.animal;
+package domain.animal.species;
 
-public class Cat extends Animal {
+import domain.animal.Animal;
+import domain.animal.group.Mammal;
+
+public class Cat extends Mammal {
 
     public Cat(String name, int age) {
         super(name, age);

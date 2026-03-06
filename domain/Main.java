@@ -1,8 +1,8 @@
 package domain;
 
 import domain.animal.Animal;
-import domain.animal.Cat;
-import domain.animal.Dog;
+import domain.animal.species.Cat;
+import domain.animal.species.Dog;
 import domain.zoo.Zoo;
 
 import java.util.InputMismatchException;

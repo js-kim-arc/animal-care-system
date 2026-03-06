@@ -44,6 +44,9 @@ public abstract class Animal {
 
     public abstract String getType();
 
+    // 큰 분류(조류/포유류/파충류) - abstract(아래가 규칙 가지는게 좋아보임)
+    public abstract String getGroup();
+
     public int getHappiness() {
         return happiness;
     }
