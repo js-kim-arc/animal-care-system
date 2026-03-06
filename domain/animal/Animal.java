@@ -25,13 +25,12 @@ public abstract class Animal {
         this.happiness = 50;
     }
 
-    //기본 검증 로직 - 이름
+
     private void validateName(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("동물 이름은 비어 있을 수 없습니다.");
         }
     }
-    //기본 검증 로직 - 나이
     private void validateAge(int age) {
         if (age < 0) {
             throw new IllegalArgumentException("동물 나이는 0 이상이어야 합니다.");
@@ -41,19 +40,18 @@ public abstract class Animal {
     public String getName() {
         return name;
     }
-
     public int getAge() {
         return age;
     }
-
-    public abstract String getType();
-
-    // 큰 분류(조류/포유류/파충류) - abstract(아래가 규칙 가지는게 좋아보임)
-    public abstract String getGroup();
-
+    public int getHunger() {return hunger;}
     public int getHappiness() {
         return happiness;
     }
+
+    public abstract String getType();
+    public abstract String getGroup();
+    public abstract String makeSound();
+
 
     public String summary() {
         return name + " (" + getType() + ", " + age + "살)";
@@ -66,10 +64,15 @@ public abstract class Animal {
         return getAllowedFoods().contains(food);
     }
 
+    // 기존 기본 먹이주기 (기본 감소량 10)
     public void feed(Food food) {
-        if (food == null) {
-            throw new IllegalArgumentException("먹이를 선택해야 합니다.");
-        }
+        feed(food, 10);
+    }
+
+    // 사육사 효과 반영 먹이주기
+    public void feed(Food food, int hungerDecrease) {
+        if (food == null) throw new IllegalArgumentException("먹이를 선택해야 합니다.");
+        if (hungerDecrease <= 0) throw new IllegalArgumentException("감소량은 1 이상이어야 합니다.");
 
         if (!canEat(food)) {
             System.out.println("경고: " + name + "에게 '" + food.getDisplayName()
@@ -77,10 +80,8 @@ public abstract class Animal {
             return;
         }
 
-        hunger -= 10;
-        if (hunger < 0) {
-            hunger = 0;
-        }
+        hunger -= hungerDecrease;
+        if (hunger < 0) hunger = 0;
 
         System.out.println(name + "에게 '" + food.getDisplayName()
                 + "'를(을) 주었습니다. 현재 배고픔 수치: " + hunger);
@@ -88,10 +89,14 @@ public abstract class Animal {
 
     // 놀아주면 +10 규칙 - max 100
     public void play() {
-        happiness += 10;
-        if (happiness > 100) {
-            happiness = 100;
-        }
+        play(10);
+    }
+
+    public void play(int happinessIncrease) {
+        if (happinessIncrease <= 0) throw new IllegalArgumentException("증가량은 1 이상이어야 합니다.");
+
+        happiness += happinessIncrease;
+        if (happiness > 100) happiness = 100;
 
         System.out.println(name + "와(과) 놀아주었습니다. 현재 행복도: " + happiness);
     }
@@ -104,8 +109,4 @@ public abstract class Animal {
                 + "배고픔 수치: " + hunger + "\n"
                 + "행복도: " + happiness;
     }
-
-    // 울음소리 (종류별 상이)
-    public abstract String makeSound();
-
 }

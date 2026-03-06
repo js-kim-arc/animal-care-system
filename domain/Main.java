@@ -5,7 +5,9 @@ import domain.animal.ability.Flyable;
 import domain.animal.ability.Swimmable;
 import domain.animal.species.*;
 import domain.zoo.Food;
+import domain.zoo.KeeperSpecialty;
 import domain.zoo.Zoo;
+import domain.zoo.ZooKeeper;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,6 +15,7 @@ import java.util.Scanner;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Zoo zoo = new Zoo();
+    private static ZooKeeper zooKeeper=null;
 
     public static void main(String[] args) {
         while (true) {
@@ -27,19 +30,19 @@ public class Main {
                     zoo.showAnimals();
                     break;
                 case 3:
-                    feedAnimal();
-                    break;
-                case 4:
                     playWithAnimal();
                     break;
+                case 4:
+                    feedAnimal();
+                    break;
                 case 5:
-                    showAnimalStatus();
+                    runAbility();
                     break;
                 case 6:
-                    hearAnimalSound();
+                    keeperManagement();
                     break;
                 case 7:
-                    runAbility();
+                    printZooSummary();
                     break;
                 case 8:
                     System.out.println("프로그램을 종료합니다.");
@@ -56,16 +59,17 @@ public class Main {
 
     // readable code 
     private static void printMenu() {
-        System.out.println("=== 동물원 관리 시스템 ===");
+        System.out.println("=== 확장된 동물원 관리 시스템 ===");
         System.out.println("1. 동물 등록");
         System.out.println("2. 동물 목록 보기");
-        System.out.println("3. 먹이주기");
-        System.out.println("4. 동물과 놀기");
-        System.out.println("5. 동물 상태 확인");
-        System.out.println("6. 울음소리 듣기");
-        System.out.println("7. 능력 실행");
+        System.out.println("3. 동물과 놀기");
+        System.out.println("4. 먹이주기");
+        System.out.println("5. 특별 능력 사용");
+        System.out.println("6. 사육사 관리");
+        System.out.println("7. 통계 보기");
         System.out.println("8. 종료");
     }
+
 
 
     // Animal 생성 - Ocp
@@ -118,14 +122,14 @@ public class Main {
                 return;
             }
 
-            //동물 찾기
             System.out.println("먹이를 줄 동물을 선택하세요:");
             zoo.showAnimals();
             int choice = readInt("선택: ");
 
-            //먹이 선택
             Food food = chooseFood();
-            zoo.feedAnimal(choice - 1, food);
+            ZooKeeper keeper = chooseKeeperOptional();
+
+            zoo.feedAnimal(choice - 1, food, keeper);
 
         } catch (IllegalArgumentException e) {
             System.out.println("입력 오류: " + e.getMessage());
@@ -162,11 +166,30 @@ public class Main {
             zoo.showAnimals();
 
             int choice = readInt("선택: ");
-            zoo.playWithAnimal(choice - 1);
+
+            ZooKeeper keeper = chooseKeeperOptional();
+
+            zoo.playWithAnimal(choice - 1, keeper);
 
         } catch (IllegalArgumentException e) {
             System.out.println("입력 오류: " + e.getMessage());
         }
+    }
+
+    private static ZooKeeper chooseKeeperOptional() {
+        if (!zoo.hasKeepers()) {
+            System.out.println("등록된 사육사가 없습니다. 기본 효과로 진행합니다.");
+            return null;
+        }
+
+        System.out.println("사육사를 선택하세요 (0 입력 시 선택 안 함):");
+        zoo.showKeepers();
+        int pick = readInt("선택: ");
+
+        if (pick == 0) {
+            return null;
+        }
+        return zoo.getKeeper(pick - 1);
     }
 
     private static void showAnimalStatus() {
@@ -249,6 +272,70 @@ public class Main {
             if (!executed) {
                 System.out.println(animal.getName() + "는(은) 실행할 수 있는 특별 능력이 없습니다.");
             }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
+    }
+
+    private static void keeperManagement() {
+        while (true) {
+            System.out.println("=== 사육사 관리 ===");
+            System.out.println("1. 사육사 목록 보기");
+            System.out.println("2. 사육사 등록");
+            System.out.println("3. 뒤로가기");
+
+            int menu = readInt("선택: ");
+            if (menu == 1) {
+                zoo.showKeepers();
+            } else if (menu == 2) {
+                addKeeper();
+            } else if (menu == 3) {
+                return;
+            } else {
+                System.out.println("잘못된 메뉴입니다.");
+            }
+
+            System.out.println();
+        }
+    }
+
+    private static void addKeeper() {
+        try {
+            System.out.print("사육사 이름을 입력하세요: ");
+            String name = scanner.nextLine();
+
+            System.out.println("전문 분야 선택:");
+            System.out.println("1. 조류 전문");
+            System.out.println("2. 대형동물 전문");
+            System.out.println("3. 파충류 전문");
+
+            int pick = readInt("선택: ");
+
+            KeeperSpecialty specialty;
+            switch (pick) {
+                case 1: specialty = KeeperSpecialty.BIRD; break;
+                case 2: specialty = KeeperSpecialty.LARGE_ANIMAL; break;
+                case 3: specialty = KeeperSpecialty.REPTILE; break;
+                default: throw new IllegalArgumentException("전문 분야는 1~3 중에서 선택해야 합니다.");
+            }
+
+            zoo.addKeeper(new ZooKeeper(name, specialty));
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
+    }
+
+    private static void printZooSummary() {
+        try {
+            if (zoo.isEmpty()) {
+                System.out.println("등록된 동물이 없습니다.");
+                return;
+            }
+
+            int threshold = readInt("배고픈 기준치(threshold)를 입력하세요 (예: 20): ");
+            zoo.printSummary(threshold);
 
         } catch (IllegalArgumentException e) {
             System.out.println("입력 오류: " + e.getMessage());
