@@ -75,5 +75,11 @@ public class Zoo {
         System.out.println(animal.getName() + ": " + animal.makeSound());
     }
 
+    public Animal getAnimal(int index) {
+        if (index < 0 || index >= animals.size()) {
+            throw new IllegalArgumentException("잘못된 동물 번호입니다.");
+        }
+        return animals.get(index);
+    }
 
 }

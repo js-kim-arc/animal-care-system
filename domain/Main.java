@@ -1,6 +1,8 @@
 package domain;
 
 import domain.animal.Animal;
+import domain.animal.ability.Flyable;
+import domain.animal.ability.Swimmable;
 import domain.animal.species.*;
 import domain.zoo.Zoo;
 
@@ -34,8 +36,11 @@ public class Main {
                     break;
                 case 6:
                     hearAnimalSound();
-                    break; // ✅ 6번에서 7번으로 떨어지는 fall-through 방지
+                    break;
                 case 7:
+                    runAbility();
+                    break;
+                case 8:
                     System.out.println("프로그램을 종료합니다.");
                     scanner.close();
                     return;
@@ -57,7 +62,8 @@ public class Main {
         System.out.println("4. 동물과 놀기");
         System.out.println("5. 동물 상태 확인");
         System.out.println("6. 울음소리 듣기");
-        System.out.println("7. 종료");
+        System.out.println("7. 능력 실행");
+        System.out.println("8. 종료");
     }
 
 
@@ -188,6 +194,42 @@ public class Main {
                 System.out.println("숫자를 입력해주세요.");
                 scanner.nextLine();
             }
+        }
+    }
+
+    // 진행 -> flag 값으로 ability 발현 판단
+    private static void runAbility() {
+        try {
+            if (zoo.isEmpty()) {
+                System.out.println("등록된 동물이 없습니다.");
+                return;
+            }
+
+            System.out.println("능력을 실행할 동물을 선택하세요:");
+            zoo.showAnimals();
+            int choice = readInt("선택: ");
+
+            Animal animal = zoo.getAnimal(choice - 1);
+
+            boolean executed = false;
+
+            if (animal instanceof Flyable) {
+                ((Flyable) animal).fly();
+                executed = true;
+            }
+
+            if (animal instanceof Swimmable) {
+                ((Swimmable) animal).swim();
+                executed = true;
+            }
+
+            // 능력 없음
+            if (!executed) {
+                System.out.println(animal.getName() + "는(은) 실행할 수 있는 특별 능력이 없습니다.");
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
         }
     }
 }
