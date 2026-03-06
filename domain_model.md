@@ -22,8 +22,9 @@
 ### 행위
 - 자신의 종류를 반환한다: `getType()`
 - 목록에 표시할 기본 정보를 제공한다: `summary()`
-- 먹이를 받아 배고픔 수치를 감소시킨다: `feed()`
-- 함께 놀아 행복도를 증가시킨다: `play()`
+- `feed(Food food, int hungerDecrease)` : 사육사 효과에 따라 감소량을 주입 가능하게 한다. - (수정)
+- `play(int happinessIncrease)` : 사육사 효과에 따라 증가량을 주입 가능하게 한다. - (수정)
+- 기존 `feed(Food)`, `play()`는 기본값(10)로 유지하여 기존 기능이 깨지지 않게 한다.
 - 상태를 편한 문자열로 만든다: `status()`
 - 울음소리를 낸다: `makeSound()`
 -  분류(Bird/Mammal/Reptile)는 중간 분류 클래스가 확장.
@@ -110,10 +111,15 @@
 - 동물을 등록한다
 - 등록된 동물 목록을 보여준다
 - 목록이 비었는지 확인한다: `isEmpty()`
-- 선택한 동물에게 먹이를 준다: `feedAnimal(int index)`
+- 선택한 동물에게 먹이를 준다: `feedAnimal(int index, Food food, keeper)`
 - 선택한 동물과 놀아준다: `playWithAnimal(int index)`
 - 선택한 동물의 상태를 보여준다: `showAnimalStatus(int index)`
 - 선택한 동물의 울음소리를 들려준다: `hearAnimalSound(int index)`
+- `countByType()` : 종류별 개체 수
+- `averageHappiness()` : 전체 평균 행복도
+- `hungryAnimals(threshold)` : 배고픈 동물 목록(기준치 이하)
+- `printSummary(threshold)` : 총 수 / 분류별 수 / 평균 행복도 / 배고픈 수를 한 번에 출력
+- `feedAnimal(index, food, keeper)` / `playWithAnimal(index, keeper)` : 사육사 효과 반영
 
 ### 규칙
 - 등록된 동물은 목록에 저장되어야 한다.
@@ -122,10 +128,40 @@
 - 목록이 비어 있으면 안내 문구가 출력되어야 한다.
 - 잘못된 번호로 동물을 선택하면 먹이를 줄 수 없다.
 - 잘못된 번호로 동물을 선택하면 놀아줄 수 없다.
+- 기준치(threshold) 이하를 “배고픔 상태”로 본다.
+- 출력은 “관리자가 한눈에 볼 수 있게” 요약 형태로 제공한다.
 
 ### 검증
 - `null` 동물은 등록하면 안 됨
 - 선택 인덱스가 범위를 벗어나면 안 됨
+
+---
+
+## ZooKeeper- 사육사
+“관리하다”를 모델링
+
+### 속성
+- `name` : 사육사 이름
+- `specialty` : 전문 분야
+
+### 행위
+- `isSpecializedFor(Animal)` : 해당 동물이 전문 분야에 해당하는지 판정한다.
+- (간접 효과) 전문 분야가 맞으면 먹이/놀이 효과가 증가한다.
+
+### 규칙
+- 전문 분야가 맞으면
+  - 먹이 효과(배고픔 감소량) 증가
+  - 놀이 효과(행복도 증가량) 증가
+- 전문 분야가 아니면 기본 효과(default)로 동작
+
+---
+
+## KeeperSpecialty (enum)
+사육사 전문 분야를 고정 값으로 관리한다.
+
+- `BIRD` : 조류 전문
+- `LARGE_ANIMAL` : 대형 동물 전문(예: 사자/코끼리)
+- `REPTILE` : 파충류 전문
 
 ---
 
