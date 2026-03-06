@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1c2450b-100c-47ab-a3b2-5571e5488b69" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/domain/animal/ability/Flyable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/animal/ability/Swimmable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprint_Lite.md" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint_Lite.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/animal/species/Eagle.java" beforeDir="false" afterPath="$PROJECT_DIR$/domain/animal/species/Eagle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/animal/species/Penguin.java" beforeDir="false" afterPath="$PROJECT_DIR$/domain/animal/species/Penguin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/zoo/Zoo.java" beforeDir="false" afterPath="$PROJECT_DIR$/domain/zoo/Zoo.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;js-kim-arc&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/js-kim-arc/animal-care-system.git&quot;,
+    &quot;accountId&quot;: &quot;8803d878-61f8-4811-b740-d5d3005eb05f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3AVrklNJep3CknOqPog8reCoYvh" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;level-2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;프로젝트&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;애플리케이션.Main.executor&quot;: &quot;Run&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="b1c2450b-100c-47ab-a3b2-5571e5488b69" name="변경" comment="" />
+      <created>1772688723872</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772688723872</updated>
+      <workItem from="1772688725135" duration="7519000" />
+      <workItem from="1772702276696" duration="41000" />
+      <workItem from="1772761897815" duration="3612000" />
+      <workItem from="1772771526075" duration="2478000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
