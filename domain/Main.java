@@ -1,8 +1,7 @@
 package domain;
 
 import domain.animal.Animal;
-import domain.animal.species.Cat;
-import domain.animal.species.Dog;
+import domain.animal.species.*;
 import domain.zoo.Zoo;
 
 import java.util.InputMismatchException;
@@ -63,16 +62,28 @@ public class Main {
 
 
     // Animal 생성 - Ocp
+    // 확장
     private static Animal createAnimal(int type, String name, int age) {
-        if (type == 1) {
-            return new Dog(name, age);
+        switch (type) {
+            case 1:
+                return new Dog(name, age);
+            case 2:
+                return new Cat(name, age);
+            case 3:
+                return new Eagle(name, age);
+            case 4:
+                return new Penguin(name, age);
+            case 5:
+                return new Lion(name, age);
+            case 6:
+                return new Elephant(name, age);
+            case 7:
+                return new Snake(name, age);
+            case 8:
+                return new Turtle(name, age);
+            default:
+                throw new IllegalArgumentException("동물 종류는 1~8 범위에서 선택할 수 있습니다.");
         }
-
-        if (type == 2) {
-            return new Cat(name, age);
-        }
-
-        throw new IllegalArgumentException("동물 종류는 1 또는 2만 선택할 수 있습니다.");
     }
 
     private static void registerAnimal() {
@@ -81,7 +92,9 @@ public class Main {
             String name = scanner.nextLine();
 
             int age = readInt("동물 나이를 입력하세요: ");
-            int type = readInt("동물 종류를 선택하세요 (1.강아지 2.고양이): ");
+            int type = readInt(
+                    "동물 종류를 선택하세요 (1.강아지 2.고양이 3.독수리 4.펭귄 5.사자 6.코끼리 7.뱀 8.거북이): "
+                              );
 
             Animal animal = createAnimal(type, name, age);
             zoo.addAnimal(animal);
