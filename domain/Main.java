@@ -13,36 +13,39 @@ public class Main {
     private static final Zoo zoo = new Zoo();
 
     public static void main(String[] args) {
-        printMenu();
-        int menu = readInt("메뉴를 선택하세요: ");
+        while (true) {
+            printMenu();
+            int menu = readInt("메뉴를 선택하세요: ");
 
-        switch (menu) {
-            case 1:
-                registerAnimal();
-                break;
-            case 2:
-                zoo.showAnimals();
-                break;
-            case 3:
-                feedAnimal();
-                break;
-            case 4:
-                playWithAnimal();
-                break;
-            case 5:
-                showAnimalStatus();
-                break;
-            case 6:
-                hearAnimalSound();
-            case 7:
-                System.out.println("프로그램을 종료합니다.");
-                scanner.close();
-                return;
-            default:
-                System.out.println("잘못된 메뉴입니다.");
+            switch (menu) {
+                case 1:
+                    registerAnimal();
+                    break;
+                case 2:
+                    zoo.showAnimals();
+                    break;
+                case 3:
+                    feedAnimal();
+                    break;
+                case 4:
+                    playWithAnimal();
+                    break;
+                case 5:
+                    showAnimalStatus();
+                    break;
+                case 6:
+                    hearAnimalSound();
+                    break; // ✅ 6번에서 7번으로 떨어지는 fall-through 방지
+                case 7:
+                    System.out.println("프로그램을 종료합니다.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("잘못된 메뉴입니다.");
+            }
+
+            System.out.println();
         }
-
-        System.out.println();
     }
 
 
