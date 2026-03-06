@@ -53,9 +53,9 @@ public class Zoo {
     }
 
     // 동물 찾아서 밥주기
-    public void feedAnimal(int index) {
+    public void feedAnimal(int index, Food food) {
         Animal animal = findAnimalByIndex(index);
-        animal.feed();
+        animal.feed(food);
     }
 
     public void playWithAnimal(int index) {

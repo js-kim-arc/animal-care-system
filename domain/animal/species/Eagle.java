@@ -2,6 +2,10 @@ package domain.animal.species;
 
 import domain.animal.ability.Flyable;
 import domain.animal.group.Bird;
+import domain.zoo.Food;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 public class Eagle extends Bird implements Flyable {
 
@@ -22,5 +26,10 @@ public class Eagle extends Bird implements Flyable {
     @Override
     public void fly() {
         System.out.println(getName() + "가(이) 하늘 높이 날아오릅니다!");
+    }
+
+    @Override
+    public Set<Food> getAllowedFoods() {
+        return EnumSet.of(Food.MEAT);
     }
 }

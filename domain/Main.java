@@ -4,6 +4,7 @@ import domain.animal.Animal;
 import domain.animal.ability.Flyable;
 import domain.animal.ability.Swimmable;
 import domain.animal.species.*;
+import domain.zoo.Food;
 import domain.zoo.Zoo;
 
 import java.util.InputMismatchException;
@@ -117,15 +118,36 @@ public class Main {
                 return;
             }
 
-            // 코드 리팩토링 고민
+            //동물 찾기
             System.out.println("먹이를 줄 동물을 선택하세요:");
             zoo.showAnimals();
-
             int choice = readInt("선택: ");
-            zoo.feedAnimal(choice - 1);
+
+            //먹이 선택
+            Food food = chooseFood();
+            zoo.feedAnimal(choice - 1, food);
 
         } catch (IllegalArgumentException e) {
             System.out.println("입력 오류: " + e.getMessage());
+        }
+    }
+
+    private static Food chooseFood() {
+        System.out.println("먹이를 선택하세요:");
+        System.out.println("1. 육류(MEAT)");
+        System.out.println("2. 어류(FISH)");
+        System.out.println("3. 식물(PLANT)");
+        System.out.println("4. 견과류(NUT)");
+
+        int pick = readInt("선택: ");
+
+        switch (pick) {
+            case 1: return Food.MEAT;
+            case 2: return Food.FISH;
+            case 3: return Food.PLANT;
+            case 4: return Food.NUT;
+            default:
+                throw new IllegalArgumentException("먹이는 1~4 중에서 선택해야 합니다.");
         }
     }
 

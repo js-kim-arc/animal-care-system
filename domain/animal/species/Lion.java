@@ -1,6 +1,10 @@
 package domain.animal.species;
 
 import domain.animal.group.Mammal;
+import domain.zoo.Food;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 public class Lion extends Mammal {
 
@@ -16,5 +20,10 @@ public class Lion extends Mammal {
     @Override
     public String makeSound() {
         return "어흥!";
+    }
+
+    @Override
+    public Set<Food> getAllowedFoods() {
+        return EnumSet.of(Food.MEAT);
     }
 }
