@@ -71,4 +71,16 @@ public abstract class Animal {
         System.out.println(name + "와(과) 놀아주었습니다. 현재 행복도: " + happiness);
     }
 
+    // Story 5: 상태 확인용
+    public String status() {
+        return "이름: " + name + "\n"
+                + "종류: " + getType() + "\n"
+                + "나이: " + age + "살\n"
+                + "배고픔 수치: " + hunger + "\n"
+                + "행복도: " + happiness;
+    }
+
+    // Story 5: 울음소리 (종류별 상이)
+    public abstract String makeSound();
+
 }

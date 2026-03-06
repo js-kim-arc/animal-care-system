@@ -10,4 +10,9 @@ public class Dog extends Animal {
     public String getType() {
         return "강아지";
     }
+
+    @Override
+    public String makeSound() {
+        return "멍멍!";
+    }
 }

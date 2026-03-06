@@ -63,5 +63,17 @@ public class Zoo {
         animal.play();
     }
 
+    // 상태 확인
+    public void showAnimalStatus(int index) {
+        Animal animal = findAnimalByIndex(index);
+        System.out.println(animal.status());
+    }
+
+    // 울음소리 듣기
+    public void hearAnimalSound(int index) {
+        Animal animal = findAnimalByIndex(index);
+        System.out.println(animal.getName() + ": " + animal.makeSound());
+    }
+
 
 }

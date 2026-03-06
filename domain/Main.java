@@ -30,6 +30,11 @@ public class Main {
                 playWithAnimal();
                 break;
             case 5:
+                showAnimalStatus();
+                break;
+            case 6:
+                hearAnimalSound();
+            case 7:
                 System.out.println("프로그램을 종료합니다.");
                 scanner.close();
                 return;
@@ -48,8 +53,11 @@ public class Main {
         System.out.println("2. 동물 목록 보기");
         System.out.println("3. 먹이주기");
         System.out.println("4. 동물과 놀기");
-        System.out.println("5. 종료");
+        System.out.println("5. 동물 상태 확인");
+        System.out.println("6. 울음소리 듣기");
+        System.out.println("7. 종료");
     }
+
 
     // Animal 생성 - Ocp
     private static Animal createAnimal(int type, String name, int age) {
@@ -111,6 +119,42 @@ public class Main {
 
             int choice = readInt("선택: ");
             zoo.playWithAnimal(choice - 1);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
+    }
+
+    private static void showAnimalStatus() {
+        try {
+            if (zoo.isEmpty()) {
+                System.out.println("등록된 동물이 없습니다.");
+                return;
+            }
+
+            System.out.println("상태를 확인할 동물을 선택하세요:");
+            zoo.showAnimals();
+
+            int choice = readInt("선택: ");
+            zoo.showAnimalStatus(choice - 1);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
+    }
+
+    private static void hearAnimalSound() {
+        try {
+            if (zoo.isEmpty()) {
+                System.out.println("등록된 동물이 없습니다.");
+                return;
+            }
+
+            System.out.println("울음소리를 들을 동물을 선택하세요:");
+            zoo.showAnimals();
+
+            int choice = readInt("선택: ");
+            zoo.hearAnimalSound(choice - 1);
 
         } catch (IllegalArgumentException e) {
             System.out.println("입력 오류: " + e.getMessage());
