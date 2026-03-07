@@ -1,3 +1,6 @@
+# 관련 블로그 글 - 
+> https://velog.io/@js-kim-arc/내일배움캠프-Epic에서-Story까지-animal-care-system을-통해-적용해본-애자일-설계-감각
+
 # 🐾 반려동물 관리 시스템 (Pet Management System)
 
 콘솔 환경에서 동물을 등록하고 상태를 관리할 수 있는 객체지향 프로그래밍(OOP) 기반 프로젝트입니다.
